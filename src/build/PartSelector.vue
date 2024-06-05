@@ -6,7 +6,14 @@
     }"><img :src="selectedPart.imageUrl" alt="part" /></router-link>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
-    <span class="sale" v-show="selectedPart.onSale">Sale!</span>
+    <span
+      v-pin="{ bottom: pinPadding, right: pinPadding}"
+      class="sale"
+      v-show="selectedPart.onSale"
+      @click="pinPadding = pinPadding === '30px' ? '10px' : '30px'"
+    >
+      Sale!
+    </span>
   </div>
 </template>
 
@@ -19,6 +26,7 @@ const props = defineProps(['parts', 'position']);
 const emit = defineEmits(['partSelected']);
 const selectedPartIndex = ref(0);
 const selectedPart = computed(() => props.parts[selectedPartIndex.value]);
+const pinPadding = ref('10px');
 
 emit('partSelected', selectedPart.value);
 onUpdated(() => emit('partSelected', selectedPart.value));
@@ -58,9 +66,6 @@ const selectPreviousPart = () => {
 }
 
 .sale {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
   color: white;
   background-color: red;
   padding: 3px;
