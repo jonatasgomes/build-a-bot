@@ -1,7 +1,6 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.eslint": true
+    "source.fixAll": "always"
   },
   "editor.inlayHints.enabled": "off",
 }

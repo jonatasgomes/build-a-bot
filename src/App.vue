@@ -3,23 +3,35 @@
     <nav>
       <ul>
         <li class="nav-item">
-          <img class="logo" src="./assets/build-a-bot-logo.png" alt="logo" />
-          Build-a-Bot
+          <router-link :to="{ name: 'Home' }" class="nav-link" active-class="active-link">
+            <img class="logo" src="./assets/build-a-bot-logo.png" alt="logo" />
+            Build-a-Bot
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Build' }" class="nav-link">
+            Build
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Search' }" class="nav-link">
+            Search
+          </router-link>
+        </li>
+        <li class="nav-item cart">
+          <router-link to="/cart" class="nav-link">
+            Cart
+          </router-link>
         </li>
       </ul>
     </nav>
   </header>
   <main>
-    <!-- <HomePage msg="Welcome to Your Vue.js App"/> -->
-    <RobotBuilder />
-    <!-- <ProductSearch /> -->
+    <router-view />
   </main>
 </template>
 
 <script setup>
-// import HomePage from './home/HomePage.vue';
-import RobotBuilder from './build/RobotBuilder.vue';
-// import ProductSearch from './search/ProductSearch.vue';
 
 </script>
 
@@ -43,12 +55,16 @@ main {
 }
 header {
   background-color: #999;
-  width: 1460px;
+  width: 860px;
   margin: 0 auto;
 }
 ul {
   padding: 3px;
   display: flex;
+}
+.nav-link {
+  color: inherit;
+  text-decoration: none;
 }
 .nav-item {
   display: inline-block;
@@ -56,8 +72,20 @@ ul {
   font-size: 22px;
   border-right: 1px solid #bbb;
 }
+.nav-item.cart {
+  position: relative;
+  margin-left: auto;
+  border-right: none;
+}
 .logo {
   vertical-align: middle;
   height: 30px;
+}
+.router-link-active {
+  color: white;
+}
+.active-link {
+  color: white;
+  text-shadow: 2px 2px 2px black;
 }
 </style>
